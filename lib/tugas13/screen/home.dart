@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tugass_fluterr/tugas13/screen/editdelete.dart';
 import 'package:tugass_fluterr/tugas13/screen/tambahdata.dart';
+import 'package:tugass_fluterr/tugas13/model/model.dart';
+import 'package:tugass_fluterr/tugas13/database/database_helper.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,28 +11,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Map<String, dynamic>> siswaList = [
-    {'nama': 'Andi Pratama', 'jurusan': 'IPA', 'tahunLulus': 2023},
-  ];
+  List<StudentModel> siswaList = [];
 
-  void refresh() {
-    setState(() {});
+  @override
+  void initState() {
+    super.initState();
+    fetchStudents();
   }
 
-  Future<void> _navigateToTambahData() async {
-    final hasil = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const TambahData()),
-    );
-
-    if (hasil != null && hasil is Map<String, dynamic>) {
-      setState(() {
-        siswaList.add(hasil);
-      });
-    }
+  Future<void> fetchStudents() async {
+    final data = await DatabaseHelper.instance.getStudents();
+    setState(() {
+      siswaList = data;
+    });
   }
 
-  void _konfirmasiHapus(int index) {
+  void _showDeleteConfirmation(StudentModel siswa) {
     showDialog(
       context: context,
       builder:
@@ -40,19 +35,31 @@ class _HomeScreenState extends State<HomeScreen> {
             content: const Text("Yakin ingin menghapus data ini?"),
             actions: [
               TextButton(
-                child: const Text("Batal"),
                 onPressed: () => Navigator.pop(context),
+                child: const Text("Batal"),
               ),
               TextButton(
-                child: const Text("Hapus", style: TextStyle(color: Colors.red)),
-                onPressed: () {
+                onPressed: () async {
+                  await DatabaseHelper.instance.deleteStudent(siswa.id!);
                   Navigator.pop(context);
-                  deleteSiswa(context, siswaList, index, refresh);
+                  fetchStudents(); // refresh list
                 },
+                child: const Text("Hapus", style: TextStyle(color: Colors.red)),
               ),
             ],
           ),
     );
+  }
+
+  Future<void> _navigateToTambahData({StudentModel? siswa}) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => TambahData(data: siswa)),
+    );
+
+    if (result == true) {
+      fetchStudents();
+    }
   }
 
   @override
@@ -69,19 +76,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body:
           siswaList.isEmpty
-              ? const Center(
-                child: Text(
-                  "Belum ada data siswa.",
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
-                ),
-              )
+              ? const Center(child: Text("Belum ada data siswa."))
               : ListView.builder(
                 itemCount: siswaList.length,
                 padding: const EdgeInsets.all(16),
                 itemBuilder: (context, index) {
                   final siswa = siswaList[index];
-                  final nama = siswa['nama'];
-                  final inisial = nama.isNotEmpty ? nama[0].toUpperCase() : '?';
+                  final inisial =
+                      siswa.nama.isNotEmpty ? siswa.nama[0].toUpperCase() : '?';
 
                   return Card(
                     shape: RoundedRectangleBorder(
@@ -105,14 +107,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       title: Text(
-                        nama,
+                        siswa.nama,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
                       subtitle: Text(
-                        'Jurusan: ${siswa['jurusan']}\nTahun Lulus: ${siswa['tahunLulus']}',
+                        'NIM: ${siswa.nis}\nKelas: ${siswa.kelas}',
                         style: const TextStyle(height: 1.5),
                       ),
                       isThreeLine: true,
@@ -122,16 +124,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           IconButton(
                             icon: const Icon(Icons.edit, color: Colors.green),
                             onPressed:
-                                () => editSiswa(
-                                  context,
-                                  siswaList,
-                                  index,
-                                  refresh,
-                                ),
+                                () => _navigateToTambahData(siswa: siswa),
                           ),
                           IconButton(
                             icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () => _konfirmasiHapus(index),
+                            onPressed: () => _showDeleteConfirmation(siswa),
                           ),
                         ],
                       ),
@@ -141,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color.fromARGB(255, 185, 23, 91),
-        onPressed: _navigateToTambahData,
+        onPressed: () => _navigateToTambahData(),
         child: const Icon(Icons.add),
       ),
     );
