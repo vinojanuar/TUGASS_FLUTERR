@@ -49,15 +49,13 @@ class AboutPage extends StatelessWidget {
           SizedBox(height: 10),
           Text(
             'Ini adalah aplikasi contoh yang dibuat untuk latihan Flutter. '
-            'Aplikasi ini menunjukkan penggunaan BottomNavigationBar, '
-            'halaman statis, dan pengelolaan state dengan StatefulWidget.',
+            'Aplikasi ini untuk pendataan Mahasiswa, ',
             style: TextStyle(fontSize: 16),
           ),
           SizedBox(height: 10),
           Text(
             'Ini adalah aplikasi contoh yang dibuat untuk latihan Flutter. '
-            'Aplikasi ini menunjukkan penggunaan BottomNavigationBar, '
-            'halaman statis, dan pengelolaan state dengan StatefulWidget.',
+            'Aplikasi ini untuk pendataan Mahasiswa, ',
             style: TextStyle(fontSize: 16),
           ),
 
