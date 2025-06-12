@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6FA),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 185, 23, 91),
+        backgroundColor: const Color(0xffD8D2C2),
         title: const Text(
           "Data Mahasiswa",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
@@ -137,9 +137,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromARGB(255, 185, 23, 91),
+        backgroundColor: const Color(0xffD8D2C2),
         onPressed: () => _navigateToTambahData(),
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.black),
       ),
     );
   }

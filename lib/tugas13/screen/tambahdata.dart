@@ -52,8 +52,8 @@ class _TambahDataState extends State<TambahData> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(isEdit ? "Edit Data Siswa" : "Tambah Data Siswa"),
-        backgroundColor: const Color.fromARGB(255, 185, 23, 91),
+        title: Text(isEdit ? "Edit Data Siswa" : "Tambah Data Mahasiswa"),
+        backgroundColor: const Color(0xffD8D2C2),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -79,10 +79,16 @@ class _TambahDataState extends State<TambahData> {
               const SizedBox(height: 24),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 185, 23, 91),
+                  backgroundColor: const Color(0xffD8D2C2),
                 ),
                 onPressed: _simpanData,
-                child: Text(isEdit ? "Simpan Perubahan" : "Simpan"),
+                child: Text(
+                  isEdit ? "Simpan Perubahan" : "Simpan",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
               ),
             ],
           ),
