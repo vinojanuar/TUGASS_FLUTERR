@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:tugass_fluterr/tugas13/database/database_helper.dart';
 import 'package:tugass_fluterr/tugas13/model/model.dart';
-=======
->>>>>>> 00cef750c76d99ccfdfb9c89e67e04c2f646aadd
 import 'package:tugass_fluterr/tugas13/screen/tambahdata.dart';
-import 'package:tugass_fluterr/tugas13/model/model.dart';
-import 'package:tugass_fluterr/tugas13/database/database_helper.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -81,11 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body:
           siswaList.isEmpty
-<<<<<<< HEAD
               ? const Center(child: Text("Belum ada Data Mahasiswa."))
-=======
-              ? const Center(child: Text("Belum ada data siswa."))
->>>>>>> 00cef750c76d99ccfdfb9c89e67e04c2f646aadd
               : ListView.builder(
                 itemCount: siswaList.length,
                 padding: const EdgeInsets.all(16),
@@ -123,11 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       subtitle: Text(
-<<<<<<< HEAD
                         'NIM: ${siswa.nim}\nFakultas: ${siswa.fakultas}',
-=======
-                        'NIM: ${siswa.nis}\nKelas: ${siswa.kelas}',
->>>>>>> 00cef750c76d99ccfdfb9c89e67e04c2f646aadd
                         style: const TextStyle(height: 1.5),
                       ),
                       isThreeLine: true,

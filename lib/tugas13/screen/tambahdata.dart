@@ -14,46 +14,17 @@ class TambahData extends StatefulWidget {
 class _TambahDataState extends State<TambahData> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController namaController;
-<<<<<<< HEAD
   late TextEditingController nimController;
   late TextEditingController fakultasController;
-=======
-  late TextEditingController nisController;
-  late TextEditingController kelasController;
->>>>>>> 00cef750c76d99ccfdfb9c89e67e04c2f646aadd
 
   @override
   void initState() {
     super.initState();
     namaController = TextEditingController(text: widget.data?.nama ?? '');
-<<<<<<< HEAD
     nimController = TextEditingController(text: widget.data?.nim ?? '');
     fakultasController = TextEditingController(
       text: widget.data?.fakultas ?? '',
     );
-=======
-    nisController = TextEditingController(text: widget.data?.nis ?? '');
-    kelasController = TextEditingController(text: widget.data?.kelas ?? '');
-  }
-
-  Future<void> _simpanData() async {
-    if (_formKey.currentState!.validate()) {
-      final siswa = StudentModel(
-        id: widget.data?.id,
-        nama: namaController.text,
-        nis: nisController.text,
-        kelas: kelasController.text,
-      );
-
-      if (widget.data == null) {
-        await DatabaseHelper.instance.insertStudent(siswa);
-      } else {
-        await DatabaseHelper.instance.updateStudent(siswa);
-      }
-
-      Navigator.pop(context, true); // kirim sinyal ke HomeScreen untuk refresh
-    }
->>>>>>> 00cef750c76d99ccfdfb9c89e67e04c2f646aadd
   }
 
   Future<void> _simpanData() async {
@@ -96,22 +67,13 @@ class _TambahDataState extends State<TambahData> {
                 validator: (value) => value!.isEmpty ? "Wajib diisi" : null,
               ),
               TextFormField(
-<<<<<<< HEAD
                 controller: nimController,
-=======
-                controller: nisController,
->>>>>>> 00cef750c76d99ccfdfb9c89e67e04c2f646aadd
                 decoration: const InputDecoration(labelText: "NIM"),
                 validator: (value) => value!.isEmpty ? "Wajib diisi" : null,
               ),
               TextFormField(
-<<<<<<< HEAD
                 controller: fakultasController,
                 decoration: const InputDecoration(labelText: "Fakultas"),
-=======
-                controller: kelasController,
-                decoration: const InputDecoration(labelText: "Kelas"),
->>>>>>> 00cef750c76d99ccfdfb9c89e67e04c2f646aadd
                 validator: (value) => value!.isEmpty ? "Wajib diisi" : null,
               ),
               const SizedBox(height: 24),
