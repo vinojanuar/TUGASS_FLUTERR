@@ -45,7 +45,7 @@ class _RegisScreenState extends State<RegisScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xffFAF7F0),
         elevation: 0.5,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
@@ -57,7 +57,7 @@ class _RegisScreenState extends State<RegisScreen> {
           },
         ),
       ),
-      backgroundColor: const Color.fromARGB(255, 248, 248, 248),
+      backgroundColor: const Color(0xffFAF7F0),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -66,7 +66,7 @@ class _RegisScreenState extends State<RegisScreen> {
             children: [
               const SizedBox(height: 16),
               const Text(
-                "Data Siswa PPKD Jakpus",
+                "Data Mahasiswa",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
@@ -158,7 +158,7 @@ class _RegisScreenState extends State<RegisScreen> {
               ElevatedButton(
                 onPressed: _register,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xff21BDCA),
+                  backgroundColor: const Color(0xffD8D2C2),
                   elevation: 0,
                   minimumSize: const Size(double.infinity, 56),
                   shape: RoundedRectangleBorder(
@@ -170,7 +170,7 @@ class _RegisScreenState extends State<RegisScreen> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.white,
+                    color: Color(0xff4A4947),
                   ),
                 ),
               ),
@@ -190,7 +190,7 @@ class _RegisScreenState extends State<RegisScreen> {
                     child: const Text(
                       "Masuk",
                       style: TextStyle(
-                        color: Color(0xff21BDCA),
+                        color: Color(0xff4A4947),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

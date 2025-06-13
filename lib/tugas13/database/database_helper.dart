@@ -5,7 +5,6 @@ import 'package:tugass_fluterr/tugas13/model/model.dart'; // sesuaikan path-nya
 class DatabaseHelper {
   static const _databaseName = 'student_manager.db';
   static const _databaseVersion = 1;
-
   static const tableStudent = 'students';
 
   DatabaseHelper._privateConstructor();
@@ -33,8 +32,8 @@ class DatabaseHelper {
       CREATE TABLE $tableStudent (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nama TEXT NOT NULL,
-        nis TEXT NOT NULL,
-        kelas TEXT NOT NULL
+        nim TEXT NOT NULL,
+        fakultas TEXT NOT NULL
       )
     ''');
   }
@@ -42,6 +41,7 @@ class DatabaseHelper {
   // Tambahkan data
   Future<int> insertStudent(StudentModel student) async {
     final db = await database;
+    print(student.id);
     return await db.insert(tableStudent, student.toMap());
   }
 
@@ -49,7 +49,6 @@ class DatabaseHelper {
   Future<List<StudentModel>> getStudents() async {
     final db = await database;
     final maps = await db.query(tableStudent, orderBy: 'id DESC');
-
     return maps.map((map) => StudentModel.fromMap(map)).toList();
   }
 

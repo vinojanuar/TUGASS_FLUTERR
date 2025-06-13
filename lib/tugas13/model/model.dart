@@ -1,26 +1,26 @@
 class StudentModel {
   final int? id;
   final String nama;
-  final String nis;
-  final String kelas;
+  final String nim;
+  final String fakultas;
 
   StudentModel({
     this.id,
     required this.nama,
-    required this.nis,
-    required this.kelas,
+    required this.nim,
+    required this.fakultas,
   });
 
   Map<String, dynamic> toMap() {
-    return {'id': id, 'nama': nama, 'nis': nis, 'kelas': kelas};
+    return {'id': id, 'nama': nama, 'nim': nim, 'fakultas': fakultas};
   }
 
   factory StudentModel.fromMap(Map<String, dynamic> map) {
     return StudentModel(
       id: map['id'],
       nama: map['nama'],
-      nis: map['nis'],
-      kelas: map['kelas'],
+      nim: map['nim'],
+      fakultas: map['fakultas'],
     );
   }
 }

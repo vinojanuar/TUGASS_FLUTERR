@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: const Color.fromARGB(255, 7, 7, 7),
             behavior: SnackBarBehavior.floating,
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 248, 248, 248),
+      backgroundColor: const Color(0xffFAF7F0),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               const SizedBox(height: 36),
               const Text(
-                "Data Siswa PPKD Jakpus",
+                "Data Mahasiswa",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 14),
@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ElevatedButton(
                 onPressed: _login,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xff21BDCA),
+                  backgroundColor: const Color(0xffD8D2C2),
                   elevation: 0,
                   minimumSize: const Size(double.infinity, 56),
                   shape: RoundedRectangleBorder(
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 19,
-                    color: Colors.white,
+                    color: Color(0xff4A4947),
                   ),
                 ),
               ),
@@ -185,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "Sign Up",
                       style: TextStyle(
                         fontSize: 14,
-                        color: Color(0xff21BDCA),
+                        color: Color(0xff4A4947),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

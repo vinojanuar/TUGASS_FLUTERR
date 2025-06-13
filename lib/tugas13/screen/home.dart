@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tugass_fluterr/tugas13/screen/tambahdata.dart';
-import 'package:tugass_fluterr/tugas13/model/model.dart';
 import 'package:tugass_fluterr/tugas13/database/database_helper.dart';
+import 'package:tugass_fluterr/tugas13/model/model.dart';
+import 'package:tugass_fluterr/tugas13/screen/tambahdata.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -67,16 +67,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6FA),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 185, 23, 91),
+        backgroundColor: const Color(0xffD8D2C2),
         title: const Text(
-          "Data Siswa",
+          "Data Mahasiswa",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
       body:
           siswaList.isEmpty
-              ? const Center(child: Text("Belum ada data siswa."))
+              ? const Center(child: Text("Belum ada Data Mahasiswa."))
               : ListView.builder(
                 itemCount: siswaList.length,
                 padding: const EdgeInsets.all(16),
@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       subtitle: Text(
-                        'NIM: ${siswa.nis}\nKelas: ${siswa.kelas}',
+                        'NIM: ${siswa.nim}\nFakultas: ${siswa.fakultas}',
                         style: const TextStyle(height: 1.5),
                       ),
                       isThreeLine: true,
@@ -137,9 +137,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromARGB(255, 185, 23, 91),
+        backgroundColor: const Color(0xffD8D2C2),
         onPressed: () => _navigateToTambahData(),
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.black),
       ),
     );
   }

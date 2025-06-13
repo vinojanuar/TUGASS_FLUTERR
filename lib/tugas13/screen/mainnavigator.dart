@@ -18,6 +18,7 @@ class _MainNavigationState extends State<MainNavigation> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.black,
         currentIndex: _selectedIndex,
         onTap: (int index) {
           setState(() {
@@ -25,8 +26,14 @@ class _MainNavigationState extends State<MainNavigation> {
           });
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Tentang'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_filled, color: Color(0xff3D3C42)),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info, color: Color(0xff3D3C42)),
+            label: 'Tentang',
+          ),
         ],
       ),
     );
@@ -49,15 +56,13 @@ class AboutPage extends StatelessWidget {
           SizedBox(height: 10),
           Text(
             'Ini adalah aplikasi contoh yang dibuat untuk latihan Flutter. '
-            'Aplikasi ini menunjukkan penggunaan BottomNavigationBar, '
-            'halaman statis, dan pengelolaan state dengan StatefulWidget.',
+            'Aplikasi ini untuk pendataan Mahasiswa, ',
             style: TextStyle(fontSize: 16),
           ),
           SizedBox(height: 10),
           Text(
             'Ini adalah aplikasi contoh yang dibuat untuk latihan Flutter. '
-            'Aplikasi ini menunjukkan penggunaan BottomNavigationBar, '
-            'halaman statis, dan pengelolaan state dengan StatefulWidget.',
+            'Aplikasi ini untuk pendataan Mahasiswa, ',
             style: TextStyle(fontSize: 16),
           ),
 

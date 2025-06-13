@@ -14,15 +14,17 @@ class TambahData extends StatefulWidget {
 class _TambahDataState extends State<TambahData> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController namaController;
-  late TextEditingController nisController;
-  late TextEditingController kelasController;
+  late TextEditingController nimController;
+  late TextEditingController fakultasController;
 
   @override
   void initState() {
     super.initState();
     namaController = TextEditingController(text: widget.data?.nama ?? '');
-    nisController = TextEditingController(text: widget.data?.nis ?? '');
-    kelasController = TextEditingController(text: widget.data?.kelas ?? '');
+    nimController = TextEditingController(text: widget.data?.nim ?? '');
+    fakultasController = TextEditingController(
+      text: widget.data?.fakultas ?? '',
+    );
   }
 
   Future<void> _simpanData() async {
@@ -30,8 +32,8 @@ class _TambahDataState extends State<TambahData> {
       final siswa = StudentModel(
         id: widget.data?.id,
         nama: namaController.text,
-        nis: nisController.text,
-        kelas: kelasController.text,
+        nim: nimController.text,
+        fakultas: fakultasController.text,
       );
 
       if (widget.data == null) {
@@ -50,8 +52,8 @@ class _TambahDataState extends State<TambahData> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(isEdit ? "Edit Data Siswa" : "Tambah Data Siswa"),
-        backgroundColor: const Color.fromARGB(255, 185, 23, 91),
+        title: Text(isEdit ? "Edit Data Siswa" : "Tambah Data Mahasiswa"),
+        backgroundColor: const Color(0xffD8D2C2),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -65,22 +67,28 @@ class _TambahDataState extends State<TambahData> {
                 validator: (value) => value!.isEmpty ? "Wajib diisi" : null,
               ),
               TextFormField(
-                controller: nisController,
+                controller: nimController,
                 decoration: const InputDecoration(labelText: "NIM"),
                 validator: (value) => value!.isEmpty ? "Wajib diisi" : null,
               ),
               TextFormField(
-                controller: kelasController,
-                decoration: const InputDecoration(labelText: "Kelas"),
+                controller: fakultasController,
+                decoration: const InputDecoration(labelText: "Fakultas"),
                 validator: (value) => value!.isEmpty ? "Wajib diisi" : null,
               ),
               const SizedBox(height: 24),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 185, 23, 91),
+                  backgroundColor: const Color(0xffD8D2C2),
                 ),
                 onPressed: _simpanData,
-                child: Text(isEdit ? "Simpan Perubahan" : "Simpan"),
+                child: Text(
+                  isEdit ? "Simpan Perubahan" : "Simpan",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
               ),
             ],
           ),
