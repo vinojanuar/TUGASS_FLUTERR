@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
-            backgroundColor: const Color.fromARGB(255, 7, 7, 7),
+            backgroundColor: Colors.white,
             behavior: SnackBarBehavior.floating,
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -68,8 +68,13 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Form(
           key: _formKey,
           child: ListView(
+            padding: const EdgeInsets.symmetric(vertical: 24),
             children: [
               const SizedBox(height: 36),
+
+              Center(
+                child: Image.asset('assets/images/LOGO-UEU.webp', height: 100),
+              ),
               const Text(
                 "Data Mahasiswa",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -118,7 +123,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         value!.isEmpty ? 'Password tidak boleh kosong' : null,
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
+
               ElevatedButton(
                 onPressed: _login,
                 style: ElevatedButton.styleFrom(
@@ -201,8 +207,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   InputDecoration _inputDecoration(String hint) {
     return InputDecoration(
+      labelStyle: TextStyle(color: Colors.black),
       hintText: hint,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.black),
+        borderRadius: BorderRadius.circular(12),
+      ),
     );
   }
 

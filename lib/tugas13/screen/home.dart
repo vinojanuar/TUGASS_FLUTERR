@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tugass_fluterr/tugas13/database/database_helper.dart';
 import 'package:tugass_fluterr/tugas13/model/model.dart';
+import 'package:tugass_fluterr/tugas13/screen/login.dart';
 import 'package:tugass_fluterr/tugas13/screen/tambahdata.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  //Konfirmasi Hapuss Dataaa
   void _showDeleteConfirmation(StudentModel siswa) {
     showDialog(
       context: context,
@@ -36,7 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text("Batal"),
+                child: const Text(
+                  "Batal",
+                  style: TextStyle(color: Color(0xff333446)),
+                ),
               ),
               TextButton(
                 onPressed: () async {
@@ -73,6 +78,17 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.black),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
+            },
+          ),
+        ],
       ),
       body:
           siswaList.isEmpty
@@ -97,11 +113,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         vertical: 10,
                       ),
                       leading: CircleAvatar(
-                        backgroundColor: Colors.pink.shade100,
+                        backgroundColor: const Color(0xffFADA7A),
                         child: Text(
                           inisial,
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 244, 244, 244),
                             fontWeight: FontWeight.bold,
                           ),
                         ),

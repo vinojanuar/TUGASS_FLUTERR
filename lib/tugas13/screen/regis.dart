@@ -56,6 +56,8 @@ class _RegisScreenState extends State<RegisScreen> {
             );
           },
         ),
+        centerTitle: true,
+        title: Image.asset('assets/images/LOGO-UEU.webp', height: 50),
       ),
       backgroundColor: const Color(0xffFAF7F0),
       body: Padding(
@@ -71,7 +73,7 @@ class _RegisScreenState extends State<RegisScreen> {
               ),
               const SizedBox(height: 8),
               const Text(
-                "Silakan daftarkan data anda untuk melanjutkan.",
+                "Please register your details to continue.",
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
 
@@ -179,7 +181,7 @@ class _RegisScreenState extends State<RegisScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Sudah punya akun? "),
+                  const Text("Already have an account? "),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushReplacement(
@@ -188,7 +190,7 @@ class _RegisScreenState extends State<RegisScreen> {
                       );
                     },
                     child: const Text(
-                      "Masuk",
+                      "Enter",
                       style: TextStyle(
                         color: Color(0xff4A4947),
                         fontWeight: FontWeight.bold,
@@ -206,13 +208,13 @@ class _RegisScreenState extends State<RegisScreen> {
 
   InputDecoration _inputDecoration(String hint) {
     return InputDecoration(
+      labelStyle: TextStyle(color: Colors.black),
       hintText: hint,
-      filled: true,
-      fillColor: Colors.white,
-      contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-      border: OutlineInputBorder(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.black),
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: Colors.grey),
       ),
     );
   }

@@ -63,19 +63,67 @@ class _TambahDataState extends State<TambahData> {
             children: [
               TextFormField(
                 controller: namaController,
-                decoration: const InputDecoration(labelText: "Nama"),
+                decoration: const InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+
+                  prefixIcon: Icon(Icons.person),
+                  labelText: "Nama",
+                  labelStyle: TextStyle(color: Color.fromARGB(255, 10, 10, 11)),
+                ),
                 validator: (value) => value!.isEmpty ? "Wajib diisi" : null,
               ),
+
+              SizedBox(height: 10),
               TextFormField(
                 controller: nimController,
-                decoration: const InputDecoration(labelText: "NIM"),
+                decoration: const InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  prefixIcon: Icon(Icons.format_list_numbered_sharp),
+                  labelText: "NIM",
+                  labelStyle: TextStyle(color: Color.fromARGB(255, 10, 10, 11)),
+                ),
+
                 validator: (value) => value!.isEmpty ? "Wajib diisi" : null,
               ),
+
+              SizedBox(height: 10),
               TextFormField(
                 controller: fakultasController,
-                decoration: const InputDecoration(labelText: "Fakultas"),
+                decoration: const InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  prefixIcon: Icon(Icons.school),
+                  labelText: "Fakultas",
+                  labelStyle: TextStyle(color: Color.fromARGB(255, 10, 10, 11)),
+                ),
                 validator: (value) => value!.isEmpty ? "Wajib diisi" : null,
               ),
+
+              SizedBox(height: 10),
+
               const SizedBox(height: 24),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(

@@ -48,23 +48,20 @@ class AboutPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: ListView(
-        children: const [
+        children: [
+          Center(
+            child: Image.asset('assets/images/LOGO-UEU.webp', height: 100),
+          ),
           Text(
             'Tentang Aplikasi',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 10),
           Text(
-            'Ini adalah aplikasi contoh yang dibuat untuk latihan Flutter. '
-            'Aplikasi ini untuk pendataan Mahasiswa, ',
+            'Aplikasi penginputan mahasiswa adalah perangkat lunak penting yang dirancang untuk menyederhanakan dan mengotomatisasi proses pencatatan data mahasiswa. Dengan aplikasi ini, institusi pendidikan dapat dengan mudah memasukkan, menyimpan, dan mengelola informasi penting seperti detail pribadi, riwayat akademik, dan status pembayaran. Ini membantu memastikan akurasi data, mengurangi kesalahan manual, dan memungkinkan akses cepat ke informasi yang diperlukan untuk berbagai keperluan administrasi dan pelaporan, membuat seluruh proses lebih efisien. ',
             style: TextStyle(fontSize: 16),
           ),
           SizedBox(height: 10),
-          Text(
-            'Ini adalah aplikasi contoh yang dibuat untuk latihan Flutter. '
-            'Aplikasi ini untuk pendataan Mahasiswa, ',
-            style: TextStyle(fontSize: 16),
-          ),
 
           SizedBox(height: 10),
           Text(' Pembuat Vino Januar', style: TextStyle(fontSize: 16)),
