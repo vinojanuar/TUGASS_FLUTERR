@@ -10,90 +10,39 @@ class AddPages extends StatefulWidget {
 class _AddPagesState extends State<AddPages> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff222831),
-        centerTitle: true,
-        title: Text(
-          'Vino',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Color(0xffDFD0B8),
+    return Scaffold(body: Stack(children: [buildbackground(), buildLayer()]));
+  }
+
+  SafeArea buildLayer() {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Welcome Back",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+
+              Text("Login to your Acces Account"),
+            ],
           ),
         ),
       ),
-
-      body: Column(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Perfect Shoes",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-            ),
-          ),
-          SizedBox(height: 2),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text("For Perfect style", style: TextStyle(fontSize: 17)),
-          ),
-
-          Row(
-            children: [
-              //Container 1
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xffDFD0B8),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-
-                    height: 50,
-                    width: 300,
-                    child: Center(
-                      child: Text(
-                        "Barang 1",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              //Container 2
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xffDFD0B8),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-
-                    height: 50,
-                    width: 20,
-                    child: Center(
-                      child: Text(
-                        "Barang 1",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
+
+  TextField buildTextField()
+
+  Container buildbackground() {
+    return Container(
+      color: const Color.fromARGB(255, 255, 253, 253),
+      width: 812,
+      height: 812,
+    );
+  }
+
+
 }

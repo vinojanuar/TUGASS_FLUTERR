@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tugass_fluterr/tugas13/screen/login.dart';
+import 'package:tugass_fluterr/projectlatihan/pagess/add_pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Aplikasi Siswa',
       theme: ThemeData(primarySwatch: Colors.pink),
-      home: const LoginScreen(),
+      home: const AddPages(),
     );
   }
 }
