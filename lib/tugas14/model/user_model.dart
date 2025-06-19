@@ -1,91 +1,169 @@
 // To parse this JSON data, do
 //
-//     final listUserResponse = listUserResponseFromJson(jsonString);
+//     final welcome = welcomeFromJson(jsonString);
 
 import 'dart:convert';
 
-ListUserResponse listUserResponseFromJson(String str) =>
-    ListUserResponse.fromJson(json.decode(str));
+Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
 
-String listUserResponseToJson(ListUserResponse data) =>
-    json.encode(data.toJson());
+String welcomeToJson(Welcome data) => json.encode(data.toJson());
 
-class ListUserResponse {
-  int? page;
-  int? perPage;
-  int? total;
-  int? totalPages;
-  List<Users>? data;
-  Support? support;
+class Welcome {
+  Info? info;
+  List<Result>? results;
 
-  ListUserResponse({
-    this.page,
-    this.perPage,
-    this.total,
-    this.totalPages,
-    this.data,
-    this.support,
-  });
+  Welcome({this.info, this.results});
 
-  factory ListUserResponse.fromJson(Map<String, dynamic> json) =>
-      ListUserResponse(
-        page: json["page"],
-        perPage: json["per_page"],
-        total: json["total"],
-        totalPages: json["total_pages"],
-        data:
-            json["data"] == null
-                ? []
-                : List<Users>.from(json["data"]!.map((x) => Users.fromJson(x))),
-        support:
-            json["support"] == null ? null : Support.fromJson(json["support"]),
-      );
+  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+    info: json["info"] == null ? null : Info.fromJson(json["info"]),
+    results:
+        json["results"] == null
+            ? []
+            : List<Result>.from(
+              json["results"]!.map((x) => Result.fromJson(x)),
+            ),
+  );
 
   Map<String, dynamic> toJson() => {
-    "page": page,
-    "per_page": perPage,
-    "total": total,
-    "total_pages": totalPages,
-    "data":
-        data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
-    "support": support?.toJson(),
+    "info": info?.toJson(),
+    "results":
+        results == null
+            ? []
+            : List<dynamic>.from(results!.map((x) => x.toJson())),
   };
 }
 
-class Users {
+class Info {
+  int? count;
+  int? pages;
+  String? next;
+  dynamic prev;
+
+  Info({this.count, this.pages, this.next, this.prev});
+
+  factory Info.fromJson(Map<String, dynamic> json) => Info(
+    count: json["count"],
+    pages: json["pages"],
+    next: json["next"],
+    prev: json["prev"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "count": count,
+    "pages": pages,
+    "next": next,
+    "prev": prev,
+  };
+}
+
+class Result {
   int? id;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? avatar;
+  String? name;
+  Status? status;
+  Species? species;
+  String? type;
+  Gender? gender;
+  Location? origin;
+  Location? location;
+  String? image;
+  List<String>? episode;
+  String? url;
+  String? created;
 
-  Users({this.id, this.email, this.firstName, this.lastName, this.avatar});
+  Result({
+    this.id,
+    this.name,
+    this.status,
+    this.species,
+    this.type,
+    this.gender,
+    this.origin,
+    this.location,
+    this.image,
+    this.episode,
+    this.url,
+    this.created,
+  });
 
-  factory Users.fromJson(Map<String, dynamic> json) => Users(
+  factory Result.fromJson(Map<String, dynamic> json) => Result(
     id: json["id"],
-    email: json["email"],
-    firstName: json["first_name"],
-    lastName: json["last_name"],
-    avatar: json["avatar"],
+    name: json["name"],
+    status: statusValues.map[json["status"]]!,
+    species: speciesValues.map[json["species"]]!,
+    type: json["type"],
+    gender: genderValues.map[json["gender"]]!,
+    origin: json["origin"] == null ? null : Location.fromJson(json["origin"]),
+    location:
+        json["location"] == null ? null : Location.fromJson(json["location"]),
+    image: json["image"],
+    episode:
+        json["episode"] == null
+            ? []
+            : List<String>.from(json["episode"]!.map((x) => x)),
+    url: json["url"],
+    created: json["created"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "email": email,
-    "first_name": firstName,
-    "last_name": lastName,
-    "avatar": avatar,
+    "name": name,
+    "status": statusValues.reverse[status],
+    "species": speciesValues.reverse[species],
+    "type": type,
+    "gender": genderValues.reverse[gender],
+    "origin": origin?.toJson(),
+    "location": location?.toJson(),
+    "image": image,
+    "episode":
+        episode == null ? [] : List<dynamic>.from(episode!.map((x) => x)),
+    "url": url,
+    "created": created,
   };
 }
 
-class Support {
+enum Gender { FEMALE, MALE, UNKNOWN }
+
+final genderValues = EnumValues({
+  "Female": Gender.FEMALE,
+  "Male": Gender.MALE,
+  "unknown": Gender.UNKNOWN,
+});
+
+class Location {
+  String? name;
   String? url;
-  String? text;
 
-  Support({this.url, this.text});
+  Location({this.name, this.url});
 
-  factory Support.fromJson(Map<String, dynamic> json) =>
-      Support(url: json["url"], text: json["text"]);
+  factory Location.fromJson(Map<String, dynamic> json) =>
+      Location(name: json["name"], url: json["url"]);
 
-  Map<String, dynamic> toJson() => {"url": url, "text": text};
+  Map<String, dynamic> toJson() => {"name": name, "url": url};
+}
+
+enum Species { ALIEN, HUMAN }
+
+final speciesValues = EnumValues({
+  "Alien": Species.ALIEN,
+  "Human": Species.HUMAN,
+});
+
+enum Status { ALIVE, DEAD, UNKNOWN }
+
+final statusValues = EnumValues({
+  "Alive": Status.ALIVE,
+  "Dead": Status.DEAD,
+  "unknown": Status.UNKNOWN,
+});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }
