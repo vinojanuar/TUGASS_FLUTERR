@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tugass_fluterr/tugas14/view/user_list_screen.dart';
+import 'package:tugass_fluterr/tugas15/view/regis_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Aplikasi Siswa',
       theme: ThemeData(primarySwatch: Colors.pink),
-      home: const UserListScreen(), // Ganti sesuai kebutuhan Anda
-      // home: const AddPages(), // Aktifkan ini jika ingin langsung ke halaman Add
+      home: const regisScreen(),
     );
   }
 }
