@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:tugass_fluterr/tugas13/screen/login.dart';
 import 'package:tugass_fluterr/tugas15/api/user_api.dart';
 
-class regisScreen extends StatefulWidget {
-  const regisScreen({super.key});
+class APIregisScreen extends StatefulWidget {
+  const APIregisScreen({super.key});
   static const String id = "/Tugas6";
 
   @override
-  State<regisScreen> createState() => _regisScreenState();
+  State<APIregisScreen> createState() => _APIregisScreenState();
 }
 
-class _regisScreenState extends State<regisScreen> {
+class _APIregisScreenState extends State<APIregisScreen> {
   final UserService userService = UserService();
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;

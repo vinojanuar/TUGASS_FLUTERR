@@ -1,62 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tugass_fluterr/tugas13/screen/mainnavigator.dart';
-import 'package:tugass_fluterr/tugas13/screen/regis.dart';
+import 'package:tugass_fluterr/tugas15/api/user_api.dart';
+import 'package:tugass_fluterr/tugas15/view/home_screen.dart';
+import 'package:tugass_fluterr/tugas15/view/regis_screen.dart';
 
-class Loginscreen extends StatefulWidget {
-  const Loginscreen({super.key});
+class APILoginscreen extends StatefulWidget {
+  const APILoginscreen({super.key});
   static const String id = "/Tugas6";
 
   @override
-  State<Loginscreen> createState() => _LoginscreenState();
+  State<APILoginscreen> createState() => _APILoginscreenState();
 }
 
-class _LoginscreenState extends State<Loginscreen> {
+class _APILoginscreenState extends State<APILoginscreen> {
+  final UserService userService = UserService();
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  bool isLoading = false;
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
   bool _obscurePassword = true;
+  final bool _obscureConfirm = true;
 
-  Future<void> _login() async {
-    final prefs = await SharedPreferences.getInstance();
-    final storedEmail = prefs.getString('email');
-    final storedPassword = prefs.getString('password');
+  void _login() async {
+    if (!_formKey.currentState!.validate()) return;
 
-    if (_formKey.currentState!.validate()) {
-      if (_emailController.text.trim() == storedEmail &&
-          _passwordController.text == storedPassword) {
-        await prefs.setBool('isLoggedIn', true);
-        if (mounted) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const MainNavigation()),
-          );
-        }
-      } else {
-        if (mounted) {
-          final snackBar = SnackBar(
-            content: Row(
-              children: [
-                Icon(Icons.error_outline, color: Colors.red.shade900),
-                const SizedBox(width: 12),
-                const Expanded(
-                  child: Text(
-                    'Email atau Password salah',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            backgroundColor: Colors.white,
-            behavior: SnackBarBehavior.floating,
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        }
-      }
+    setState(() {
+      isLoading = true;
+    });
+    final res = await userService.loginUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+    if (res["data"] != null && res["data"]["token"] != null) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString("token", res["data"]["token"]);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Berhasil Login"),
+          backgroundColor: Colors.green,
+        ),
+      );
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => ProfileUserScreen()),
+        (route) => false,
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "Gagal Login, ${res["message"] ?? "Terjadi Kesalahan"}",
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -183,7 +189,7 @@ class _LoginscreenState extends State<Loginscreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const RegisScreen(),
+                          builder: (context) => const APIregisScreen(),
                         ),
                       );
                     },
