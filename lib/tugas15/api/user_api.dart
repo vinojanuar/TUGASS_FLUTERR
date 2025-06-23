@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:tugass_fluterr/meet22/helper/preference.dart';
+import 'package:tugass_fluterr/helper/preference.dart';
 import 'package:tugass_fluterr/tugas15/endpoint.dart';
 import 'package:tugass_fluterr/tugas15/model/home.dart';
 import 'package:tugass_fluterr/tugas15/model/regis/register_eror_response.dart';
