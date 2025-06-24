@@ -70,4 +70,22 @@ class UserService {
       throw Exception("Failed to register user: ${response.statusCode}");
     }
   }
+
+  Future<Map<String, dynamic>> updateProfile({required String name}) async {
+    String? token = await PreferenceHandler.getToken();
+
+    final response = await http.put(
+      Uri.parse(Endpoint.profile),
+      headers: {"Accept": "application/json", "Authorization": "Bearer $token"},
+      body: {"name": name},
+    );
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      final result = jsonDecode(response.body);
+      return result;
+    } else {
+      throw Exception('Login gagal: ${response.statusCode}');
+    }
+  }
 }

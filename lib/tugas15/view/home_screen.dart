@@ -33,9 +33,11 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                 child: const Text('Cancel'),
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  final updateName = nameController.text;
+
                   // TODO: Tambahkan logic update nama jika API tersedia
-                  // UserService().updateProfile(name: nameController.text);
+                  UserService().updateProfile(name: updateName);
                   Navigator.pop(context);
                   setState(() {}); // refresh tampilan
                 },
